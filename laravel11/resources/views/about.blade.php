@@ -1,3 +1,6 @@
 <x-app-layout title="About">
-    About
+    <x-slot name="heading">
+        About
+    </x-slot>
+    About content
 </x-app-layout>
