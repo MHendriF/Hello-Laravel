@@ -32,9 +32,14 @@
                         <x-table.td>{{ $user->email }}</x-table.td>
                         <x-table.td>{{ $user->created_at->format('d M Y') }}</x-table.td>
                         <x-table.td>
-                            <a href="/users/{{ $user->id }}" class="text-indigo-600 hover:text-indigo-900">
-                                View
-                            </a>
+                            <div class="flex justify-end gap-x-2">
+                                <a href="/users/{{ $user->id }}" class="hover:uderline">
+                                    View
+                                </a>
+                                <a href="/users/{{ $user->id }}/edit" class="text-indigo-600 hover:uderline">
+                                    Edit
+                                </a>
+                            </div>
                         </x-table.td>
                     </tr>
                 @endforeach
