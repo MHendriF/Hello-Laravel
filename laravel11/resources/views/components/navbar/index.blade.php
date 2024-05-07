@@ -12,6 +12,7 @@
                         <x-navbar.link href="/about">About</x-navbar.link>
                         <x-navbar.link href="/contact">Contact</x-navbar.link>
                         <x-navbar.link href="/gallery">Gallery</x-navbar.link>
+                        <x-navbar.link href="/users">Users</x-navbar.link>
                     </div>
                 </div>
             </div>
@@ -47,6 +48,7 @@
             <x-navbar.dropdown-item href="/about">About</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="/contact">Contact</x-navbar.dropdown-item>
             <x-navbar.dropdown-item href="/gallery">Gallery</x-navbar.dropdown-item>
+            <x-navbar.dropdown-item href="/users">Users</x-navbar.dropdown-item>
         </div>
     </div>
 </nav>

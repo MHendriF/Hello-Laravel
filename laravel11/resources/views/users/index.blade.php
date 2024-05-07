@@ -21,6 +21,7 @@
                     <x-table.th>Name</x-table.th>
                     <x-table.th>Email</x-table.th>
                     <x-table.th>Created at</x-table.th>
+                    <x-table.th>Actions</x-table.th>
                 </tr>
             </x-table.thead>
             <x-table.tbody>
@@ -30,6 +31,11 @@
                         <x-table.td>{{ $user->name }}</x-table.td>
                         <x-table.td>{{ $user->email }}</x-table.td>
                         <x-table.td>{{ $user->created_at->format('d M Y') }}</x-table.td>
+                        <x-table.td>
+                            <a href="/users/{{ $user->id }}" class="text-indigo-600 hover:text-indigo-900">
+                                View
+                            </a>
+                        </x-table.td>
                     </tr>
                 @endforeach
             </x-table.tbody>
