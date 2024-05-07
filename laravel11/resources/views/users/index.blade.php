@@ -1,19 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>About</title>
-</head>
-
-<body>
-    @foreach ($users as $item)
-        <li>{{ $item['name'] }}</li>
-        <li>{{ $item['name'] }}</li>
-        <li>{{ $item['email'] }}</li>
-    @endforeach
-</body>
-
-</html>
+<x-app-layout title="Users">
+    <x-slot name="heading">
+        Users
+    </x-slot>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Created at</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at->format('d M Y') }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</x-app-layout>

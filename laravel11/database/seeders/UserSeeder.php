@@ -20,6 +20,12 @@ class UserSeeder extends Seeder
             array('name' => 'Hendri', 'email' => 'hendri@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
             array('name' => 'Hendra', 'email' => 'hendra@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
             array('name' => 'Hendro', 'email' => 'hendro@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Uchiha', 'email' => 'uchiha@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Itachi', 'email' => 'itanchi@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Sasuke', 'email' => 'sasuke@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Madara', 'email' => 'madara@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Siayan', 'email' => 'saiyan@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
+            array('name' => 'Blue', 'email' => 'blue@gmail.com',  'password' => bcrypt('zxcasd'), 'created_at' => $today, 'updated_at' => $today),
         ));
     }
 }
