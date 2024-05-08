@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreRequest;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class StoreController extends Controller
 {
@@ -44,7 +45,7 @@ class StoreController extends Controller
     {
         $file = $request->file('logo');
         $request->user()->stores()->create([
-            ...$request->validated(),
+            ...$request->validated(), 
             ...['logo' => $file->store('images/stores')]
         ]);
         return to_route('stores.index');
@@ -63,6 +64,7 @@ class StoreController extends Controller
      */
     public function edit(Store $store)
     {
+        Gate::authorize('update', $store);
         return view('stores.form', [
             'store' => $store,
             'page_meta' => [

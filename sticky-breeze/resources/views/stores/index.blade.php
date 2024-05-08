@@ -15,13 +15,18 @@
                             class="size-12 rounded-lg" />
                     </div>
                     <x-card.header>
+                        <x-card.description>
+                            Created by : {{ $store->user->name }}
+                        </x-card.description>
                         <x-card.title> {{ $store->name }} </x-card.title>
                         <x-card.description>
                             {{ $store->description }}
                         </x-card.description>
-                        @if ($store->user_id === auth()->user()->id)
-                            <a href="{{ route('stores.edit', $store) }}" class="underline text-sm text-blue-600">Edit</a>
-                        @endif
+                        @auth
+                            @if ($store->user_id === auth()->user()->id)
+                                <a href="{{ route('stores.edit', $store) }}" class="underline text-sm text-blue-600">Edit</a>
+                            @endif
+                        @endauth
                     </x-card.header>
                 </x-card>
             @endforeach
