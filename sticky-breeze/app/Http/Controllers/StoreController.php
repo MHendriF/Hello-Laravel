@@ -92,7 +92,7 @@ class StoreController extends Controller
                 'description' => 'Edit store: ' . $store->name,
                 'method' => 'PUT',
                 'url' => route('stores.update', $store),
-                'button_text' => 'Update Store',
+                'button_text' => 'Update',
             ]
         ]);
     }
@@ -104,13 +104,14 @@ class StoreController extends Controller
     {
         if($request->hasFile('logo')) {
             Storage::delete($store->logo);
-            $file = $request->file('logo');
+            $file = $request->file('logo')->store('images/stores');
         } else {
             $file = $store->logo;
         }
         $store->update([
-            ...$request->validated(), 
-            ...['logo' => $file->store('images/stores')]
+            'name' => $request->name,
+            'description' => $request->description,
+            'logo' => $file,
         ]); 
         return to_route('stores.index');
     }

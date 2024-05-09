@@ -3,7 +3,7 @@
 <x-app-layout>
     @slot('title', 'List Stores')
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl leading-tight">
             {{ __('List Stores') }}
         </h2>
     </x-slot>
@@ -17,7 +17,7 @@
                     </div>
                     <x-card.header>
                         <x-card.title> {{ $store->name }} </x-card.title>
-                        <p class="mt-1 text-xs text-gray-500">
+                        <p class="text-xs text-zinc-500">
                             Created at : {{ $store->created_at->format('d-m-Y') }} by {{ $store->user->name }}
                         </p>
                     </x-card.header>
@@ -38,11 +38,11 @@
                                         @csrf
                                         @method('PUT')
 
-                                        <h2 class="text-lg font-medium text-gray-900">
+                                        <h2 class="text-lg font-medium text-zinc-900">
                                             {{ $store->name }}
                                         </h2>
 
-                                        <p class="mt-1 text-sm text-gray-600">
+                                        <p class="mt-1 text-sm text-zinc-600">
                                             {{ $store->description }}
                                         </p>
 
