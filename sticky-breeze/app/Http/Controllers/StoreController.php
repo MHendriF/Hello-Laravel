@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\StoreStatus;
 use App\Http\Requests\StoreRequest;
 use App\Models\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
@@ -14,8 +16,12 @@ class StoreController extends Controller
      */
     public function index()
     {
+        $stores = Store::query()
+        ->where('status', StoreStatus::ACTIVE)
+        ->latest()
+        ->get();
         return view('stores.index', [
-            'stores' => Store::get()
+            'stores' => $stores
         ]);
     }
 
@@ -82,8 +88,15 @@ class StoreController extends Controller
      */
     public function update(StoreRequest $request, Store $store)
     {
+        if($request->hasFile('logo')) {
+            Storage::delete($store->logo);
+            $file = $request->file('logo');
+        } else {
+            $file = $store->logo;
+        }
         $store->update([
-            ...$request->validated(),
+            ...$request->validated(), 
+            ...['logo' => $file->store('images/stores')]
         ]); 
         return to_route('stores.index');
     }
