@@ -11,6 +11,7 @@ class Student extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'email', 'section_id', 'class_id'];
+    protected $with = ['section', 'class'];
 
     public function class()
     {
