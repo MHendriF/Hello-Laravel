@@ -32,4 +32,19 @@ class StudentController extends Controller
         Student::create($request->validated());
         return to_route('students.index');
     }
+
+    public function edit(Student $student)
+    {
+        $classes = ClassesResource::collection(Classes::all());
+        return inertia('Students/Edit', [
+            'student' => StudentResource::make($student),
+            'classes' => $classes
+        ]);
+    }
+
+    public function update(StoreStudentRequest $request, Student $student)
+    {
+        $student->update($request->validated());
+        return to_route('students.index');
+    }
 }
