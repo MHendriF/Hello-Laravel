@@ -1,23 +1,35 @@
 <script setup>
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
-import { Head, Link, useForm } from "@inertiajs/vue3";
-import { watch, ref } from "vue";
+import { Head, Link, useForm, usePage } from "@inertiajs/vue3";
+import { watch, ref, onMounted } from "vue";
 import axios from "axios";
 import InputError from "@/Components/InputError.vue";
 
 defineProps({
+    page_meta: {
+        type: Object,
+    },
     classes: {
+        type: Object,
+    },
+    student: {
         type: Object,
     },
 });
 
 let sections = ref({});
+const page_meta = usePage().props.page_meta;
+const student = usePage().props.student;
 
 const form = useForm({
-    name: "",
-    email: "",
-    class_id: "",
-    section_id: "",
+    name: student?.data?.name,
+    email: student?.data?.email,
+    class_id: student?.data?.class.id,
+    section_id: student?.data?.section.id,
+});
+
+onMounted(() => {
+    if (student) getSections(form.class_id);
 });
 
 watch(
@@ -35,9 +47,15 @@ const getSections = (class_id) => {
 };
 
 const submit = () => {
-    form.post(route("students.store"), {
-        preserveScroll: true,
-    });
+    if (page_meta.method == "POST") {
+        form.post(page_meta.url, {
+            preserveScroll: true,
+        });
+    } else {
+        form.put(page_meta.url, {
+            preserveScroll: true,
+        });
+    }
 };
 </script>
 
@@ -47,7 +65,7 @@ const submit = () => {
     <AuthenticatedLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Students
+                {{ page_meta.title }}
             </h2>
         </template>
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -63,7 +81,7 @@ const submit = () => {
                                         Student Information
                                     </h3>
                                     <p class="mt-1 text-sm text-gray-500">
-                                        Use this form to create a new student.
+                                        {{ page_meta.description }}
                                     </p>
                                 </div>
 
@@ -191,7 +209,7 @@ const submit = () => {
                                     type="submit"
                                     class="bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                 >
-                                    Save
+                                    {{ page_meta.button_text }}
                                 </button>
                             </div>
                         </div>
