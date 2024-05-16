@@ -7,7 +7,10 @@
         <x-card.header>
             <x-card.title> {{ $store->name }} </x-card.title>
             <p class="text-xs text-zinc-500">
-                Created at : {{ $store->created_at->format('d-m-Y') }} by {{ $store->user->name }}
+                Created at : {{ $store->created_at->format('d-m-Y') }}
+                @if (!request()->routeIs('stores.mine'))
+                    by {{ $store->user->name }}
+                @endif
             </p>
         </x-card.header>
         <x-card.content>
@@ -21,7 +24,7 @@
 
     <x-card.footer class="flex items-center justify-between">
         <x-badge>{{ $store->status }}</x-badge>
-        @if (auth()->user()->isAdmin())
+        @if (isset($isAdmin))
             @if ($store->status === StoreStatus::PENDING)
                 <x-primary-button x-data=""
                     x-on:click.prevent="$dispatch('open-modal', `modal-{{ $store->id }}`)">{{ __('Approve') }}
