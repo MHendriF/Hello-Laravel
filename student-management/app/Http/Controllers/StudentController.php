@@ -7,7 +7,6 @@ use App\Http\Resources\ClassesResource;
 use App\Http\Resources\StudentResource;
 use App\Models\Classes;
 use App\Models\Student;
-use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -45,6 +44,12 @@ class StudentController extends Controller
     public function update(StoreStudentRequest $request, Student $student)
     {
         $student->update($request->validated());
+        return to_route('students.index');
+    }
+
+    public function destroy(Student $student)
+    {
+        $student->delete();
         return to_route('students.index');
     }
 }
