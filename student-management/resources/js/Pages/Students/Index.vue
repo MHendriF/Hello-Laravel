@@ -34,8 +34,8 @@ let studentsUrl = computed(() => {
 
 watch(
     () => studentsUrl.value,
-    (newValue) => {
-        router.visit(newValue, {
+    (updatedUrl) => {
+        router.visit(updatedUrl, {
             replace: true,
             preserveState: true,
             preserveScroll: true,
