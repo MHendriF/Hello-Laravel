@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Storage;
 
 class StoreController extends Controller
 {
-    public function list() 
+    public function list()
     {
         $stores = Store::query()
         ->latest()
-        ->paginate(10);
+        ->paginate(8);
         return view('stores.list', [
             'stores' => $stores,
         ]);
@@ -65,7 +65,7 @@ class StoreController extends Controller
     {
         $file = $request->file('logo');
         $request->user()->stores()->create([
-            ...$request->validated(), 
+            ...$request->validated(),
             ...['logo' => $file->store('images/stores')]
         ]);
         return to_route('stores.index');
@@ -112,7 +112,7 @@ class StoreController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'logo' => $file,
-        ]); 
+        ]);
         return to_route('stores.index');
     }
 

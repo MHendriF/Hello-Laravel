@@ -9,7 +9,7 @@
     </x-slot>
 
     <x-container>
-        <div class="grid grid-cols-3 gap-6">
+        <div class="grid grid-cols-4 gap-6">
             @foreach ($stores as $store)
                 <x-card class="pb-3">
                     <div class="p-6 pb-0">
@@ -65,5 +65,8 @@
             @endforeach
         </div>
 
+        <div class="mt-8">
+            {{ $stores->links() }}
+        </div>
     </x-container>
 </x-app-layout>
