@@ -17,12 +17,13 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::middleware(['verified'])->group(function () {
-        Route::resource('stores', Controllers\StoreController::class)->except(['index', 'show']); 
+        Route::get('stores/mine', [Controllers\StoreController::class, 'mine'])->name('stores.mine');
+        Route::resource('stores', Controllers\StoreController::class)->except(['index', 'show']);
     });
 
     Route::get('/profile', [Controllers\ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');    
+    Route::delete('/profile', [Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 

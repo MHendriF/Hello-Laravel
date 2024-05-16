@@ -28,6 +28,17 @@ class StoreController extends Controller
         return back();
     }
 
+    public function mine(Request $request)
+    {
+        $stores = Store::query()
+        ->where('user_id', $request->user()->id)
+        ->latest()
+        ->paginate(8);
+        return view('stores.mine', [
+            'stores' => $stores,
+        ]);
+    }
+
     public function index()
     {
         $stores = Store::query()
@@ -54,8 +65,6 @@ class StoreController extends Controller
                 'button_text' => 'Submit',
             ]
         ]);
-
-        return view('stores.create');
     }
 
     /**
