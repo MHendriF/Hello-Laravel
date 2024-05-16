@@ -13,6 +13,7 @@ defineProps({
 
 const updatePageNumber = (link) => {
     let pageNumber = link.url.split("=")[1];
+    console.log("pageNumber: ", pageNumber);
 
     router.visit(`/students?&page=${pageNumber}`, {
         preserveScroll: true,

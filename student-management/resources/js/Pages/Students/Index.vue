@@ -1,6 +1,6 @@
 <script setup>
 import MagnifyingGlass from "@/Components/Icons/MagnifyingGlass.vue";
-// import Pagination from "@/Components/Pagination.vue";
+import Pagination from "@/Components/Pagination.vue";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import { Head, Link, router, useForm, usePage } from "@inertiajs/vue3";
 import { ref, watch, computed } from "vue";
@@ -13,6 +13,8 @@ defineProps({
 
 let pageNumber = ref(1),
     searchTerm = ref(usePage().props.search ?? "");
+
+console.log(usePage().props);
 
 const pageNumberUpdated = (link) => {
     pageNumber.value = link.url.split("=")[1];
