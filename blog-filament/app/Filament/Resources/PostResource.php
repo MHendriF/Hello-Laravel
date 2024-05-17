@@ -25,12 +25,12 @@ class PostResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(2048),
                 Forms\Components\TextInput::make('slug')
                     ->required()
-                    ->maxLength(255),
+                    ->maxLength(2048),
                 Forms\Components\TextInput::make('thumbnail')
-                    ->maxLength(255),
+                    ->maxLength(2048),
                 Forms\Components\Textarea::make('body')
                     ->required()
                     ->columnSpanFull(),
@@ -77,6 +77,7 @@ class PostResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
