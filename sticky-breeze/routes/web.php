@@ -9,6 +9,7 @@ Route::get('/', Controllers\HomeController::class)->name('home');
 Route::get('/dashboard', Controllers\DashboardController::class)->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('stores', [Controllers\StoreController::class, 'index'])->name('stores.index');
+Route::get('stores{store:slug}', [Controllers\StoreController::class, 'show'])->name('stores.show');
 
 Route::middleware('auth')->group(function () {
     Route::middleware([HasRoleAdminMiddleware::class])->group(function () {

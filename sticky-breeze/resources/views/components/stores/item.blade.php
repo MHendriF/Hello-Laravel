@@ -1,11 +1,15 @@
 @use('App\Enums\StoreStatus')
 <x-card class="flex flex-col">
     <div class="p-6 pb-0">
-        <img src="{{ Storage::url($store->logo) }}" alt="{{ $store->name }}" class="size-12 rounded-lg" />
+        @if ($store->logo)
+            <img src="{{ torage::url($store->logo) }}" alt="{{ $store->name }}" class="size-12 rounded-lg" />
+        @else
+            <div class="size-16 rounded-lg bg-zinc-700"></div>
+        @endif
     </div>
     <div class="flex-1">
         <x-card.header>
-            <x-card.title> {{ $store->name }} </x-card.title>
+            <x-card.title> {{ str($store->name)->limit(50) }} </x-card.title>
             <p class="text-xs text-zinc-500">
                 Created at : {{ $store->created_at->format('d-m-Y') }}
                 @if (!request()->routeIs('stores.mine'))
@@ -16,7 +20,7 @@
         <x-card.content>
             <section>
                 <p class="mb-6">
-                    {{ $store->description }}
+                    {{ str($store->description)->limit(150) }}
                 </p>
             </section>
         </x-card.content>

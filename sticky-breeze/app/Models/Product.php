@@ -10,8 +10,8 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function product(): BelongsTo
+    public function store(): BelongsTo
     {
-        return $this->belongsTo(Product::class, 'store_id');
+        return $this->belongsTo(Store::class, 'store_id');
     }
 }

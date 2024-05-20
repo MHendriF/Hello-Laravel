@@ -38,6 +38,7 @@ class StoreController extends Controller
         ->paginate(8);
         return view('stores.mine', [
             'stores' => $stores,
+            'isAdmin' => auth()->user()->isAdmin(),
         ]);
     }
 
@@ -46,9 +47,10 @@ class StoreController extends Controller
         $stores = Store::query()
         ->where('status', StoreStatus::ACTIVE)
         ->latest()
-        ->get();
+        ->paginate(8);
         return view('stores.index', [
-            'stores' => $stores
+            'stores' => $stores,
+            'isAdmin' => auth()->user()->isAdmin(),
         ]);
     }
 
@@ -87,7 +89,9 @@ class StoreController extends Controller
      */
     public function show(Store $store)
     {
-        //
+        return view('stores.show', [
+            'store'=> $store->loadCount('products'),
+        ]);
     }
 
     /**

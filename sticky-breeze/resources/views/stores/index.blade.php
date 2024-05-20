@@ -9,27 +9,12 @@
     <x-container>
         <div class="grid grid-cols-4 gap-4">
             @foreach ($stores as $store)
-                <x-card class="pb-3">
-                    <div class="p-6 pb-0">
-                        <img src="{{ \Illuminate\Support\Facades\Storage::url($store->logo) }}" alt="{{ $store->name }}"
-                            class="size-12 rounded-lg" />
-                    </div>
-                    <x-card.header>
-                        <x-card.description>
-                            Created by : {{ $store->user->name }}
-                        </x-card.description>
-                        <x-card.title> {{ $store->name }} </x-card.title>
-                        <x-card.description>
-                            {{ $store->description }}
-                        </x-card.description>
-                        @auth
-                            @if ($store->user_id === auth()->user()->id)
-                                <a href="{{ route('stores.edit', $store) }}" class="underline text-sm text-blue-600">Edit</a>
-                            @endif
-                        @endauth
-                    </x-card.header>
-                </x-card>
+                <x-stores.item :$isAdmin :$store />
             @endforeach
+        </div>
+
+        <div class="mt-8">
+            {{ $stores->links() }}
         </div>
 
     </x-container>
