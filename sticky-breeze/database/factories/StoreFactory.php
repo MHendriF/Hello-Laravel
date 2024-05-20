@@ -20,7 +20,7 @@ class StoreFactory extends Factory
     {
         return [
             "user_id" => rand(1, 3),
-            "name" => $title = str(fake()->sentence())->title(),
+            "name" => $title = str(fake()->word())->title(),
             "slug" => str($title)->slug(),
             "description" => fake()->paragraphs(2, true),
             "status" => StoreStatus::ACTIVE

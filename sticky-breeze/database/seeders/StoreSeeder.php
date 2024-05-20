@@ -13,6 +13,6 @@ class StoreSeeder extends Seeder
      */
     public function run(): void
     {
-        Model::withoutEvents(fn () =>  Store::factory(10)->hasProducts(10)->create());
+        Model::withoutEvents(fn () =>  Store::factory(10)->hasProducts(20)->create());
     }
 }

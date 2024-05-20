@@ -1,11 +1,14 @@
 @use('App\Enums\StoreStatus')
 <x-card class="flex flex-col">
+
     <div class="p-6 pb-0">
-        @if ($store->logo)
-            <img src="{{ torage::url($store->logo) }}" alt="{{ $store->name }}" class="size-12 rounded-lg" />
-        @else
-            <div class="size-16 rounded-lg bg-zinc-700"></div>
-        @endif
+        <a href="{{ route('stores.show', $store) }}">
+            @if ($store->logo)
+                <img src="{{ Storage::url($store->logo) }}" alt="{{ $store->name }}" class="size-12 rounded-lg" />
+            @else
+                <div class="size-16 rounded-lg bg-zinc-700"></div>
+            @endif
+        </a>
     </div>
     <div class="flex-1">
         <x-card.header>
@@ -19,8 +22,11 @@
         </x-card.header>
         <x-card.content>
             <section>
-                <p class="mb-6">
+                <p class="mb-2">
                     {{ str($store->description)->limit(150) }}
+                </p>
+                <p class="text-zinc-400 text-sm">
+                    {{ $store->products_count }} {{ str('products')->plural($store->products_count) }}
                 </p>
             </section>
         </x-card.content>
