@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Store;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Seeder;
 
 class StoreSeeder extends Seeder
@@ -13,6 +13,6 @@ class StoreSeeder extends Seeder
      */
     public function run(): void
     {
-        Store::factory(10)->create();
+        Model::withoutEvents(fn () =>  Store::factory(10)->hasProducts(10)->create());
     }
 }
