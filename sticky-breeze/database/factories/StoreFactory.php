@@ -23,7 +23,7 @@ class StoreFactory extends Factory
             "name" => $title = str(fake()->word())->title(),
             "slug" => str($title)->slug(),
             "description" => fake()->paragraphs(2, true),
-            "status" => StoreStatus::ACTIVE
+            "status" => StoreStatus::PENDING
         ];
     }
 }
